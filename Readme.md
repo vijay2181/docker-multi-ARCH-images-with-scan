@@ -1,5 +1,4 @@
 # Multi Arch Docker Images
-## Trivy Scanner
 
 ```
 Aws states that the processors based on graviton design offer upto 40% more value for your money compared to simialr modern processors that used x86(AMD) architecture
