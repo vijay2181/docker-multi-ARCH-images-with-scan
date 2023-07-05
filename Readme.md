@@ -279,3 +279,45 @@ so in vijay-app ecr repository, we have two images with with different architect
 ![image](https://github.com/vijay2181/docker-multi-ARCH-images-with-scan/assets/66196388/539e22a6-148c-4a11-928f-879e8a1898b0)
 
 
+## Why Multi-Arch Images
+
+Architecture Flexibility: 
+-------------------------
+Multi-arch images allow you to build and deploy containerized applications that can run on different CPU architectures. This is particularly useful when you have a heterogeneous infrastructure with multiple EC2 instances using different processor architectures, such as Intel x86 and ARM-based processors. With multi-arch images, you can seamlessly deploy your services across these instances without worrying about compatibility issues.
+
+Cost Optimization:
+------------------
+Different processor architectures may have varying performance characteristics and costs. By leveraging multi-arch images, you can optimize your infrastructure costs by choosing the most cost-effective EC2 instances based on their architecture while ensuring your services can run on them.
+
+Portability:
+------------
+Multi-arch images enhance the portability of your services. They can be deployed on different cloud providers or on-premises environments that support the respective CPU architectures. This flexibility allows you to avoid vendor lock-in and easily migrate your services across platforms as needed.
+
+Future-proofing:
+----------------
+As the technology landscape evolves, new CPU architectures may emerge, and existing ones may become more prevalent. Multi-arch images future-proof your services by ensuring they can adapt to different architectures without requiring major changes to your deployment infrastructure.
+
+Ecosystem Support:
+------------------
+Docker multi-arch images are supported by various container management tools and platforms, including AWS ECS. You can leverage the ecosystem of container-related tools, libraries, and platforms that work seamlessly with multi-arch images, enhancing the overall development and deployment experience.
+
+Overall, using multi-arch images for services in AWS offers flexibility, cost optimization, portability, future-proofing, and support within the container ecosystem. It allows you to build and deploy containerized applications that can run on a variety of CPU architectures, enabling efficient resource utilization and compatibility across different infrastructure setups.
+
+```
+When you pull a multi-arch Docker image manifest for a service that supports both AMD64 and ARM64 architectures.
+the behavior depends on the architecture of the EC2 instance from which you are pulling the image.
+```
+
+AMD64 EC2 Instance:
+--------------------
+If you are pulling the manifest from an AMD64-based EC2 instance, Docker will automatically detect the instance's architecture and fetch the appropriate image layer for AMD64. The Docker engine will then use this image layer to create and run the container.
+
+ARM64 EC2 Instance:
+-------------------
+Conversely, if you are pulling the manifest from an ARM64-based EC2 instance, Docker will identify the architecture and retrieve the corresponding image layer for ARM64. The container will be created and executed using this specific image layer.
+
+In both cases, Docker selects the image layer that matches the architecture of the host EC2 instance, ensuring compatibility and optimal execution. This seamless behavior is possible due to the underlying functionality of Docker and its support for multi-arch manifests.
+
+The Docker manifest itself serves as a reference point for the Docker engine to determine the appropriate image layer based on the architecture of the host machine. By using the manifest, you can simplify the process of deploying services to different architectures without manually managing multiple image variants.
+
+It's worth noting that the availability of multi-arch manifests and the behavior described above depend on the Docker version and the specific container runtime environment you are using. However, with the widespread adoption of multi-arch images and the popularity of Docker, this behavior is well-supported in most modern container environments.
